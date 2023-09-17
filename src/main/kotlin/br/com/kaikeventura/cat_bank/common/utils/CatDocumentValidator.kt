@@ -1,7 +1,5 @@
 package br.com.kaikeventura.cat_bank.common.utils
 
-import java.lang.IllegalArgumentException
-
 class CatDocumentValidator(
     private val catDocument: String
 ) {
@@ -13,26 +11,26 @@ class CatDocumentValidator(
     }
 
     private fun sizeValidation() {
-        if (catDocument.length != 12) {
+        if (catDocument.length != 13) {
             throw IllegalArgumentException("The size is not valid for cat document $catDocument")
         }
     }
 
     private fun prefixValidation() {
-        catDocument.substring(0, 3).also {
+        catDocument.substring(0, 4).also {
             when (it) {
-                MeowPrefix.MEOW.name -> return
-                MeowPrefix.MWON.name -> return
-                MeowPrefix.MEUO.name -> return
-                MeowPrefix.MIAU.name -> return
-                MeowPrefix.MIMI.name -> return
-                else -> IllegalArgumentException("The prefix $it is not valid for cat document $catDocument")
+                MeowPrefix.MEOW.name.lowercase() -> return
+                MeowPrefix.MWON.name.lowercase() -> return
+                MeowPrefix.MEUO.name.lowercase() -> return
+                MeowPrefix.MIAU.name.lowercase() -> return
+                MeowPrefix.MIMI.name.lowercase() -> return
+                else -> throw IllegalArgumentException("The prefix $it is not valid for cat document $catDocument")
             }
         }
     }
 
     private fun numbersValidation() {
-        catDocument.substring(4, 11).also {
+        catDocument.substring(4, 12).also {
             val firstNumber = it[0]
             for (number in 1 until it.length) {
                 if (it[number] != firstNumber) return
@@ -49,7 +47,7 @@ class CatDocumentValidator(
                 KittenLetter.T.name -> return
                 KittenLetter.E.name -> return
                 KittenLetter.N.name -> return
-                else -> IllegalArgumentException("The kitten letter $it is not valid for cat document $catDocument")
+                else -> throw IllegalArgumentException("The kitten letter $it is not valid for cat document $catDocument")
             }
         }
     }
