@@ -42,11 +42,11 @@ class CatDocumentValidator(
     private fun kittenLetterValidation() {
         catDocument.substring(12).also {
             when (it) {
-                KittenLetter.K.name -> return
-                KittenLetter.I.name -> return
-                KittenLetter.T.name -> return
-                KittenLetter.E.name -> return
-                KittenLetter.N.name -> return
+                KittenLetter.K.name.lowercase() -> return
+                KittenLetter.I.name.lowercase() -> return
+                KittenLetter.T.name.lowercase() -> return
+                KittenLetter.E.name.lowercase() -> return
+                KittenLetter.N.name.lowercase() -> return
                 else -> throw IllegalArgumentException("The kitten letter $it is not valid for cat document $catDocument")
             }
         }
