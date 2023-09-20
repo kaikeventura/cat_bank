@@ -10,8 +10,7 @@ data class BankAccountRequest(
     val dateOfBirth: LocalDate,
     val catBreed: CatBreed,
     val catDocument: String,
-    val accountTypes: Set<AccountType>,
-    val initialBalance: Long
+    val accountTypes: Set<AccountType>
 ) {
     init {
         validate()
@@ -19,12 +18,5 @@ data class BankAccountRequest(
 
     private fun validate() {
         CatDocumentValidator(catDocument).validate()
-        balanceValidation()
-    }
-
-    private fun balanceValidation() {
-        if (initialBalance <= 0) {
-            throw IllegalArgumentException("The initial balance must more than zero")
-        }
     }
 }
