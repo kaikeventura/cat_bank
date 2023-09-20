@@ -11,7 +11,7 @@ data class BankAccount(
     val catBreed: CatBreed,
     val catDocument: String,
     val accountTypes: Set<AccountType>,
-    val initialBalance: Long,
+    val balance: Long,
     val status: Status,
     val accountNumber: Long,
     val createdAt: LocalDateTime = LocalDateTime.now(),
